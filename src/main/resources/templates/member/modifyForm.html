@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>수정 폼 페이지</title>
+</head>
+<body>
+    <h1> 회원 정보 수정 </h1>
+    <form action="" th:action th:object="${member}" method="post">
+        <div>
+            <label for="memberId">MemberId</label>
+            <input type="text" th:field="*{memberId}" id="memberId" readonly/>
+        </div>
+        <div>
+            <label for="username">Username</label>
+            <input type="text" th:field="*{username}" id="username" readonly/>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" th:field="*{password}" id="password"/>
+        </div>
+        <div>
+            <label for="passwordCh">Password Confirm</label>
+            <input type="password" name="passwordCh" id="passwordCh"/>
+        </div>
+        <div>
+            <label for="name">Name</label>
+            <input type="text" th:field="*{name}" id="name"/>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="text" th:field="*{email}" id="email"/>
+        </div>
+        <div>
+            <label for="regDate">RegDate</label>
+            <input type="text" th:field="*{regDate}" id="regDate" readonly/>
+        </div>
+        <div>
+            <button type="submit">저장</button>
+            <button type="reset">재작성</button>
+            <button type="button" th:onclick="history.go(-1)">취소</button>
+            <button type="button" th:onclick="|location.href='@{/}'|">홈으로</button>
+        </div>
+    </form>
+</body>
+</html>

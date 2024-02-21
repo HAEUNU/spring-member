@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.member.repository.MemberMapper">
+
+    <!--  CRUD 기반  -->
+    <!--  회원 저장
+        auto_increment를 활용하여 자동으로 체워지는 PK인 member_id 컬럼값이
+        insert 쿼리 실행후, 브라우저 화면이나 다른 로직처리시 필요한 경우가 종종 발생한다.
+        이때 쿼리문 insert 실행 후 자동 부여되는 PK인 member_id의 값을 다시 리턴해주기 위해서는
+        useGeneratedKeys 속성을 true로 지정, keyProperty에는 해당값이 대응되는 Member객체의 변수명 지정,
+        keyColumn 속성에는 PK값이 저장되는 DB테이블 컬럼명 member_id를 지정해주면 된다.
+    -->
+    <insert id="save" useGeneratedKeys="true" keyProperty="memberId" keyColumn="member_id">
+        insert into member(username, password, name, email)
+        values(#{username}, #{password}, #{name}, #{email})
+    </insert>
+
+    <!--  id로 회원 1명 조회 -->
+    <select id="findById" resultType="Member">
+        select * from member where member_id=#{id}
+    </select>
+
+    <!-- username으로  회원 1명 조회 -->
+    <select id="findByUsername" resultType="Member">
+        select * from member where username=#{username}
+    </select>
+
+    <!--  회원 전체 조회 -->
+    <select id="findAll" resultType="Member">
+        select * from member
+    </select>
+
+    <!--  회원 정보 수정 -->
+    <update id="update">
+        update member set name=#{name}, email=#{email}
+        where member_id=#{memberId}
+    </update>
+
+    <!--  회원 정보 삭제 -->
+    <delete id="delete">
+        delete from member
+        where member_id=#{id}
+    </delete>
+
+</mapper>

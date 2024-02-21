@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>home</title>
+</head>
+<body>
+    <h1>home page</h1>
+    <h3 th:if="${deleteSuccess}" th:text="'회원 탈퇴가 정상적으로 처리되었습니다.'"></h3>
+    <!-- 로그인 X 화면 -->
+    <div th:if="${session.loginMember == null}">
+        <ul>
+            <li><a href="/members/new" th:href="@{/members/new}">회원가입</a></li>
+            <li><a href="/members" th:href="@{/members}">회원목록</a></li>
+            <li><a href="/login" th:href="@{/login}">로그인</a></li>
+        </ul>
+    </div>
+    <!-- 로그인 O 화면 -->
+    <div th:if="${session.loginMember != null}">
+        <p th:text="|${session.loginMember.username} 님, 환영합니다.|"></p>
+        <ul>
+            <li><button type="button">마이페이지</button></li>
+            <li><button type="button" th:onclick="|location.href='@{/members}'|">회원목록</button></li>
+            <li>
+                <form action="/logout" method="post" >
+                    <button type="submit">로그아웃</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원 상세</title>
+</head>
+<body>
+    <!-- th:field : 지정해준 데이터를 참고하여 name, id, value 속성을 자동으로 기입해줌
+        Controller에서 DB조회한 결과 Member 객체를 member라는 이름으로 화면에 전달해주었고,
+        여기 화면에서는 input 태그에 th:field를 이용해 화면에 출력하고 있음.
+    -->
+    <h1> 회원 상세 페이지 </h1>
+    <h3 th:if="${status}" th:text="'처리를 완료했습니다'"></h3>
+    <div>
+        <label for="memberId">MemberId</label>
+        <input type="text" th:field="${member.memberId}" id="memberId" disabled/>
+    </div>
+    <div>
+        <label for="username">Username</label>
+        <input type="text" th:field="${member.username}" id="username" disabled/>
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="text" th:field="${member.password}" id="password" disabled/>
+    </div>
+    <div>
+        <label for="name">Name</label>
+        <input type="text" th:field="${member.name}" id="name" disabled/>
+    </div>
+    <div>
+        <label for="email">Email</label>
+        <input type="text" th:field="${member.email}" id="email" disabled/>
+    </div>
+    <div>
+        <label for="regDate">Registration Date</label>
+        <input type="text" th:field="${member.regDate}" id="regDate" disabled/>
+    </div>
+    <div>
+        <button type="button" th:onclick="|location.href='@{/members/{id}/modify(id=${member.memberId})}'|">수정</button>
+        <button type="button" th:onclick="|location.href='@{/members/{id}/delete(id=${member.memberId})}'|">회원탈퇴</button>
+        <button type="button" th:onclick="|location.href='@{/}'|">홈으로</button>
+    </div>
+</body>
+</html>

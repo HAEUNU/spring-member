@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원 목록 페이지</title>
+</head>
+<body>
+    <h1> 회원 목록 페이지 </h1>
+    <table>
+        <thead>
+            <tr>
+                <th>MemberId</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>RegDate</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="member : ${list}">
+                <td><a th:href="@{/members/{id}(id=${member.memberId})}" th:text="${member.memberId}"></a></td>
+                <td><a th:href="@{/members/{id}(id=${member.memberId})}" th:text="${member.username}"></a></td>
+                <td th:text="${member.password}">Password</td>
+                <td th:text="${member.name}">Name</td>
+                <td th:text="${member.email}">Email</td>
+                <td th:text="${member.regDate}">RegDate</td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="button" th:onclick="|location.href='@{/}'|">홈으로</button>
+    <button type="button" th:onclick="|location.href='@{/members/new}'|">회원가입</button>
+
+
+</body>
+</html>

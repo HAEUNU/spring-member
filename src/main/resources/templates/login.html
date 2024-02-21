@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+    <h1>로그인</h1>
+    <h3 th:if="${loginFail}" th:text="'아이디 또는 비밀번호가 맞지 않습니다. 다시 시도해주세요.'"></h3>
+    <form action="" th:action  th:object="${member}" method="post">
+        <div>
+            <label for="username">Username</label>
+            <input type="text" th:field="*{username}" id="username" />
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" th:field="*{password}" id="password" />
+        </div>
+        <div>
+            <label for="auto">자동로그인</label>
+            <input type="checkbox" name="auto" id="auto" />
+        </div>
+        <div>
+            <button type="submit">로그인</button>
+            <button type="button" th:onclick="|location.href='@{/}'|">홈으로</button>
+        </div>
+    </form>
+</body>
+</html>
